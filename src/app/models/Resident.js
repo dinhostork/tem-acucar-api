@@ -1,4 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
+import bcrypt from 'bcrypt'
 
 class Residents extends Model {
   static init(sequelize) {
@@ -16,11 +17,25 @@ class Residents extends Model {
       sequelize,
     });
 
+    this.addHook("beforeSave", async (resident) => {
+      if(resident.password){
+        resident.password_hash = await bcrypt.hash(resident.password, 8)
+      } 
+    })
+    
+    
     return this;
   }
 
+
+
   static associate(models) {
     this.belongsTo(models.Buildings, { foreignKey: 'id_building', as: 'building' });
+    this.belongsToMany(models.Seals, {foreignKey: 'id_resident', through: 'seals_residents'});
+  }
+
+  checkPassword(password){
+    return bcrypt.compare(password, this.password_hash)
   }
 }
 
