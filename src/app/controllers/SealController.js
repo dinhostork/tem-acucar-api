@@ -7,13 +7,14 @@ class SealsController{
         if(!(await YupBadge.store.isValid(req.body))){
             return res.status(400).send();
         }
-        const {title, description} = req.body;
-        await Seals.create({title, description});
-        return res.send();
+        const {title, description, icon} = req.body;
+        const seal = await Seals.create({title, description, icon});
+
+        return res.send(seal);
     }
 
     async add(req, res){
-        if(!(await YupBadge.add.isValid(req.body))){
+        /*if(!(await YupBadge.add.isValid(req.body))){
             return res.status(400).send();
         }
 
@@ -28,7 +29,7 @@ class SealsController{
 
         await resident.addSeals(seal);
 
-        return res.send();
+        return res.send();*/
     }
 }
 

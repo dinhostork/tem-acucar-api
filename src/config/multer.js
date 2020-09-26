@@ -5,10 +5,10 @@ import crypto from 'crypto';
 export default {
     avatar: {
         storage: multer.diskStorage({
-            destination: resolve(__dirname, '..', '..', 'uploads/ofertas/'),
+            destination: resolve(__dirname, '..', '..', 'uploads/avatars/'),
             filename: (req, file, cb) => {
                 crypto.randomBytes(16, (error, res) => {
-                    return cb(null, res.toString('hex') + extname(file.originalname);
+                    return cb(null, res.toString('hex') + extname(file.originalname));
                 })
             }
         })

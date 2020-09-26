@@ -7,7 +7,7 @@ const YupFavor = {
 
     store: Yup.object().shape({
         id_building: Yup.number().positive().integer().required(),
-        //id_category: Yup.number().positive().integer().required(),
+        id_category: Yup.number().positive().integer().required(),
         final_date: Yup.date().required(),
         title: Yup.string().required(),
         description: Yup.string().required(),

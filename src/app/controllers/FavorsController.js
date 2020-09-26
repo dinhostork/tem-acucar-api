@@ -1,5 +1,6 @@
 import Favor from "../models/Favor";
 import Resident from "../models/Resident";
+import Notification from '../schemas/Notification';
 import YupFavor from '../../validations/YupFavor';
 
 class FavorsController {
@@ -8,7 +9,22 @@ class FavorsController {
             return res.status(400).send();
         }
 
+        const user = await Resident.findByPk(req.id_resident)
+
         const favor = await Favor.create(req.body);
+
+        const residents = await Resident.findAll({
+            where: { id_building  },
+            active: true
+        })
+
+        residents.forEach(async (resident) => {
+            await Notification.create({
+                title: `"Ajude seu vizinho ${user.name[0]}`,
+                content: req.body.title,
+                id_user: resident.id
+            })
+        });
 
         return res.json(favor);
     }

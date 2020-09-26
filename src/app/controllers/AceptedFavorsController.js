@@ -5,7 +5,7 @@ import YupFavor from '../../validations/YupFavor'
 class AceptedFavorsController {
     async create(req, res){
 
-        const {id} = req.body;
+        const {id} = req.params;
         const favors = await Favors.findByPk(id);
         
         if(!favors){

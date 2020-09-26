@@ -1,6 +1,7 @@
 import Building from '../models/Building';
 import YupBuilding from '../../validations/YupBuilding';
 import Residents from '../models/Resident';
+import FileController from './FileController';
 
 class BuildingsController {
     async create(req, res){
@@ -11,7 +12,13 @@ class BuildingsController {
         const building = await Building.create(req.body);
         const {id} = building;
         const {ap_number, name, nickname, password, phone} = req.body.resident;
-        await Residents.create({id_building: id, ap_number, name, nickname, password, phone, admin: true});
+        const resident = await Residents.create({id_building: id, ap_number, name, nickname, password, phone, admin: true});
+        building.id_owner = resident.id;
+        await building.update();
+
+        if(req.file){
+            await FileController.store(req.file.filename, resident.id);
+        }
 
         return res.json(building);
     }
@@ -19,7 +26,13 @@ class BuildingsController {
     async update(req, res){
         const building = await Building.findByPk(req.params.id);
         building.active = true;
+
+        const owner = await Resident.findByPk(building.id_owner)
+        owner.ative = true
+
         await building.update();
+        await owner.update();
+
         return res.json(building);
     }
     

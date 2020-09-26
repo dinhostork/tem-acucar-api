@@ -15,6 +15,7 @@ class Buildings extends Model {
 
   static associate(models) {
     this.hasMany(models.Favors, { foreignKey: 'id_building', as: 'favors' });
+    this.belongsTo(models.Residents, { foreignKey: 'id_owner', as: 'owner', allowNull: true });
   }
 }
 export default Buildings;

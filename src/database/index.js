@@ -14,7 +14,7 @@ const models = [Building, Category, Favor, Item, Resident, Seal]; // import SQL 
 class Database {
   constructor() {
     this.init();
-    // this.mongo();
+    this.mongo();
   }
 
   init() {
@@ -26,7 +26,7 @@ class Database {
 
   mongo() {
     this.mongo.connection = mongoose.connect(
-      process.env.MONGO_URL,
+      process.env.MONGO_DB_URL,
       {
         useNewUrlParser: true,
         useFindAndModify: true,
