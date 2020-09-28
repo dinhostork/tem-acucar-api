@@ -1,0 +1,14 @@
+cuidar de animais - fa-paw
+saude - fa-briefcase-medical
+computador - fa-laptop
+celular - fa-mobile-alt
+farmacia - fa-capsules
+mercado - fa-shopping-cart
+compras - fa-shopping-bag
+estudo - fa-book-open
+acessibilidade - fa-universal-access
+carona - fa-car
+jogos - fa-chess
+comida - fa-drumstick-bite
+mudanca - fa-archive
+cuidar de plantas - fa-seedling
