@@ -42,7 +42,7 @@ class SealsController{
                 }
             });
             
-            if(count == 1){
+            if(count == 5){
                 const resident = await Residents.findByPk(id);
                 const seal = await Seals.findByPk(categories[i].id_stamp);
                 await resident.addStamps(seal);
