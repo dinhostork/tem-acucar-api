@@ -1,4 +1,4 @@
-# Api "Tem Açucar"
+# API "Tem Açucar"
 
 ## Contributing locally
   after cloning this repository run your package manager update
