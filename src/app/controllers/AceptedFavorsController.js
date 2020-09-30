@@ -59,7 +59,7 @@ class AceptedFavorsController {
     }
 
     await favors.update(
-      { state: 'em aberto', id_volunteer: null },
+      { state: 'Em aberto', id_volunteer: null },
       {
         where: { id },
       },
